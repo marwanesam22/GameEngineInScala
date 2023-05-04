@@ -34,8 +34,8 @@ def take_input() : (Array[Array[String]], Int) = {
           //          break()
           //        case 5 => initial_board = init_sudoku()
           //          break()
-          //        case 6 => initial_board = init_8_queens()
-          //          break()
+          case 6 => initial_board = init_8_queens()
+            break()
           case _ => println("Enter valid Input")
         }
 
@@ -56,9 +56,10 @@ def main(): Unit = {
   var input = take_input();
   var initial_board = input._1
   var game = input._2
-
+//  game_engine(initial_board, eight_queens_drawer, eight_queens_controller)
   game match{
     case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
+    case 6 => eight_queens_drawer(initial_board)
     case _ => println("NO")
   }
 //  tic_tac_toe_drawer(initial_board)

@@ -9,7 +9,7 @@ import javax.swing.ImageIcon
 //}
 def init_ticTacToe(): Array[Array[String]] = {
   var board: Array[Array[String]] = Array.ofDim[String](3, 3)
-  for (i <- 0 to 2; j <- 0 to 2) {
+  for (i <- 0 until board.length; j <- 0 until board(0).length) {
     board(i)(j) = null
   }
   board
@@ -21,13 +21,13 @@ def init_ticTacToe(): Array[Array[String]] = {
 //  }
 //  return x
 //}
-//def init_8_queens() : Array[Array[String]] = {
-//  var board: Array[Array[String]] = Array.ofDim[String](8, 8)
-//  for (i <- 0 until 3; j <- 0 until 4) {
-//    board(i)(j) = 0
-//  }
-//  return board
-//}
+def init_8_queens() : Array[Array[String]] = {
+  var board: Array[Array[String]] = Array.ofDim[String](8, 7)
+  for (i <- 0 until board.length; j <- 0 until board(0).length)
+    board(i)(j) = null
+
+   board
+}
 //def init_sudoku() : Array[Array[String]] = {
 //  var x: Array[Array[String]] = Array.ofDim[String](8, 8)
 //  for (i <- 0 until 3; j <- 0 until 4) {
