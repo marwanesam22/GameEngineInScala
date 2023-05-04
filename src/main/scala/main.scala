@@ -1,12 +1,14 @@
 import java.awt.{Font, Graphics, Image}
+
 import java.io.IOException
 import scala.io.StdIn.*
 import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 import scala.util.control.Breaks.*
 
 
-def take_input() : Array[Array[String]] = {
+def take_input() : (Array[Array[String]], Int) = {
   var initial_board : Array[Array[String]] = null
+  var game_choice : Int = 0
 
   breakable {
     while (true) {
@@ -20,7 +22,7 @@ def take_input() : Array[Array[String]] = {
           |6. 8-Queens
           |""".stripMargin)
       try
-        var game_choice = readInt()
+        game_choice = readInt()
         game_choice match {
           //        case 1 => initial_board = init_chess()
           //          break()
@@ -45,14 +47,21 @@ def take_input() : Array[Array[String]] = {
 
     }
   }
- initial_board
+  (initial_board, game_choice)
 }
 
 @main
 def main(): Unit = {
 
-  var initial_board = take_input();
-  tic_tac_toe_drawer(initial_board)
+  var input = take_input();
+  var initial_board = input._1
+  var game = input._2
+
+  game match{
+    case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
+    case _ => println("NO")
+  }
+//  tic_tac_toe_drawer(initial_board)
   //controller (state, move) : bool, newState
   //drawer(state) : m4 by return ay 7aga
   //
