@@ -3,6 +3,10 @@ import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 
 
 def tic_tac_toe_drawer(board:Array[Array[String]]): Unit = {
+  val win = java.awt.Window.getWindows
+  for (i <- 0 until win.length) {
+    win(i).dispose()
+  }
   val frame = new JFrame("Game_engine")
   frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
   val numbers = Array("3", "2", "1")
@@ -46,15 +50,13 @@ def tic_tac_toe_drawer(board:Array[Array[String]]): Unit = {
           g.drawImage(piece_to_image(board(i)(j)), 250+5 + 100*j, 250+5 + 100*i, 90, 90, null)
         }
       }
-
-
-
     }
   }
 
   frame.add(panel)
   frame.setSize(800, 800)
   frame.setResizable(false)
+  frame.setAlwaysOnTop (true);
   frame.setLocationRelativeTo(null)
   frame.setVisible(true)
 }
