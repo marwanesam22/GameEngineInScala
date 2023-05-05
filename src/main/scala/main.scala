@@ -59,7 +59,7 @@ def main(): Unit = {
 //  game_engine(initial_board, eight_queens_drawer, eight_queens_controller)
   game match{
     case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
-    case 6 => eight_queens_drawer(initial_board)
+    case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
     case _ => println("NO")
   }
 //  tic_tac_toe_drawer(initial_board)
