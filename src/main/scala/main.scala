@@ -13,10 +13,10 @@ def take_input() : (Array[Array[String]], Int) = {
   breakable {
     while (true) {
       println(
-        """Choose Game
-          |1. Chess
+        """choose Game
+          |1. chess
           |2. Tic-Tac-Toe
-          |3. Checkers
+          |3. checkers
           |4. Connect-4
           |5. Sudoku
           |6. 8-Queens
@@ -32,17 +32,17 @@ def take_input() : (Array[Array[String]], Int) = {
           //          break()
           //        case 4 => initial_board = init_Connect_4()
           //          break()
-          //        case 5 => initial_board = init_sudoku()
-          //          break()
+          case 5 => initial_board = init_sudoku()
+            break()
           case 6 => initial_board = init_8_queens()
             break()
           case _ => println("Enter valid Input")
         }
 
-      catch
+      catch {
         case ioe: IOException => println("Got an IOException.")
         case nfe: NumberFormatException => println("Got a NumberFormatException.")
-
+      }
 
 
     }
@@ -59,6 +59,7 @@ def main(): Unit = {
 //  game_engine(initial_board, eight_queens_drawer, eight_queens_controller)
   game match{
     case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
+    case 5 => game_engine(initial_board, Sudoku_drawer, Sudoku_controller)
     case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
     case _ => println("NO")
   }

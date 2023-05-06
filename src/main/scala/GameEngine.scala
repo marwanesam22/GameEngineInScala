@@ -7,7 +7,6 @@ def game_engine(initial_board : Array[Array[String]],
   var board = initial_board;
   var turn = 1;
   while(true){
-    new JFrame();
     drawer(board)
     println("""Please Enter a valid move for the game chosen""")
     var move = readLine();
@@ -16,7 +15,6 @@ def game_engine(initial_board : Array[Array[String]],
       println("Invalid move");
     }else{
       board = ret._2;
-//      drawer(board)
       turn = if turn == 1 then 2 else 1;
     }
   }
