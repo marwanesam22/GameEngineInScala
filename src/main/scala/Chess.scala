@@ -62,10 +62,11 @@ def Chess_drawer(board: Array[Array[String]]): Unit = {
 
     }
   }
-  frame.setSize(800, 800)
   frame.add(panel)
-  frame.setAlwaysOnTop(true);
+  frame.setSize(800, 800)
   frame.setResizable(false)
+  frame.setLocationRelativeTo(null)
+  frame.setAlwaysOnTop(true)
   frame.setVisible(true)
 }
 
