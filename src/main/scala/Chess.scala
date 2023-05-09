@@ -84,7 +84,6 @@ def Chess_controller(state: (Int, Array[Array[String]]), move: String): (Boolean
       case "knight" => {
         val available = Array((i + 1, j + 2), (i + 1, j - 2), (i - 1, j + 2), (i - 1, j - 2), (i + 2, j + 1), (i + 2, j - 1), (i - 2, j + 1), (i - 2, j - 1))
         for (x <- available) {
-          println(x)
           if (x._1 == to_i && x._2 == to_j) {
             flag = true
           }
@@ -188,11 +187,11 @@ def Chess_controller(state: (Int, Array[Array[String]]), move: String): (Boolean
   val board = state._2
   val turn = state._1
   val current_color_turn = if turn == 1 then 'W' else 'B';
-  if (move.length != 6) return (false, board)
+  if (move.length != 5) return (false, board)
   val row_piece = (move.charAt(0) - '1')
   val col_piece = (move.charAt(1) - 'a')
-  val row_to = (move.charAt(4) - '1')
-  val col_to = (move.charAt(5) - 'a')
+  val row_to = (move.charAt(3) - '1')
+  val col_to = (move.charAt(4) - 'a')
 
 
   if (row_piece == row_to && col_piece == col_to)
@@ -216,6 +215,12 @@ def Chess_controller(state: (Int, Array[Array[String]]), move: String): (Boolean
       board(row_piece)(col_piece) = "Wpawn"
     board(row_to)(col_to) = board(row_piece)(col_piece)
     board(row_piece)(col_piece) = ""
+    if(board(row_to)(col_to) == "Bpawn" && row_to == 7){
+      board(row_to)(col_to) = "Bqueen"
+    }
+    if(board(row_to)(col_to) == "Wpawn" && row_to == 0){
+      board(row_to)(col_to) = "Wqueen"
+    }
   }
 
   (change_grid, board)
