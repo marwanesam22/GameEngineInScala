@@ -84,23 +84,17 @@ def Sudoku_controller(state : (Int, Array[Array[String]]), move : String):(Boole
   else{
     val row = (move.charAt(0) - '1')
     val col = (move.charAt(1) - 'a')
-    println(row)
-    println(col)
+
     var number=if(move.charAt(2)=='0')then -1 else (move.charAt(2) - '0')
 
     if(number<(-1) || number>9){
-      println("hena")
       return (false , board)
     }
     if(sudoku_valid(row,col))then{
       if(board(row)(col) == "0" && number == -1){
-        println("l2 hena")
         return (false , board)
       }
 
-//      if(board(row)(col)!="-1"&&number!=-1){
-//        return (false,board)
-//      }
 if(number != -1) {
   if(board(row)(col) != "-1")return (false, board)
   
@@ -115,11 +109,7 @@ if(number != -1) {
   for (i <-box_start_x*3 until (box_start_x*3+3)) {
     for (j <- box_start_y * 3 until (box_start_y * 3 + 3))
       if board(i)(j).substring(0, 1) == number.toString then {
-        println(i)
-        println(j)
-        println(board(i)(j))
         return (false, board)
-
       }
   }
   board(row)(col)=number.toString
@@ -129,11 +119,9 @@ if board(row)(col).length > 1 then return (false, board)
 if board(row)(col)=="-1" then return (false, board)
   board(row)(col)="-1"
 }
-
-     return (true,board)
+      (true,board)
     }
     else
-     return (false,board)
-
+      (false,board)
   }
 }

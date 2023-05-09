@@ -5,13 +5,22 @@ import scala.jdk.CollectionConverters.*
 import scala.language.postfixOps
 import scala.util.control.Breaks.break
 import scala.util.control.*
-//def init_chess() : Array[Array[String]] = {
-//  var String: Array[Array[String]] = Array.ofDim[String](8, 8)
-//  for (i <- 0 until 3; j <- 0 until 4) {
-//    x(i)(j) = 0
-//  }
-//  return x
-//}
+def init_chess() : Array[Array[String]] = {
+  var board: Array[Array[String]] = Array.ofDim[String](8, 8)
+  board(0)=Array("Brook","Bknight","Bbishop","Bqueen","Bking","Bbishop","Bknight","Brook")
+  board(7)=Array("Wrook","Wknight","Wbishop","Wqueen","Wking","Wbishop","Wknight","Wrook")
+  for (j <- 0 until 8) {
+    board(1)(j) = "B1pawn"
+  }
+  for (j <- 0 until 8) {
+    board(6)(j) = "W1pawn"
+  }
+  for (i <- 2 until 6; j <- 0 until 8) {
+    board(i)(j) = ""
+  }
+
+  board
+}
 def init_ticTacToe(): Array[Array[String]] = {
   val board: Array[Array[String]] = Array.ofDim[String](3, 3)
   for (i <- 0 until board.length; j <- 0 until board(0).length)

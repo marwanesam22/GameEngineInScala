@@ -24,8 +24,8 @@ def take_input() : (Array[Array[String]], Int) = {
       try
         game_choice = readInt()
         game_choice match {
-          //        case 1 => initial_board = init_chess()
-          //          break()
+          case 1 => initial_board = init_chess()
+            break()
           case 2 => initial_board = init_ticTacToe()
             break()
           //        case 3 => initial_board = init_checkers()
@@ -58,6 +58,7 @@ def main(): Unit = {
   var game = input._2
 //  game_engine(initial_board, eight_queens_drawer, eight_queens_controller)
   game match{
+    case 1 => game_engine(initial_board, Chess_drawer, Chess_controller)
     case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
     case 5 => game_engine(initial_board, Sudoku_drawer, Sudoku_controller)
     case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
