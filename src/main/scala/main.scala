@@ -24,24 +24,27 @@ def take_input() : (Array[Array[String]], Int) = {
       try
         game_choice = readInt()
         game_choice match {
-          //        case 1 => initial_board = init_chess()
-          //          break()
+          case 1 => initial_board = init_chess()
+            break()
           case 2 => initial_board = init_ticTacToe()
             break()
           case 3 => initial_board = init_checkers()
             break()
           case 4 => initial_board = init_connect_4()
             break()
-          //        case 5 => initial_board = init_sudoku()
-          //          break()
+          case 5 => initial_board = init_sudoku()
+            break()
           case 6 => initial_board = init_8_queens()
             break()
           case _ => println("Enter valid Input")
         }
 
-      catch
+      catch {
         case ioe: IOException => println("Got an IOException.")
         case nfe: NumberFormatException => println("Got a NumberFormatException.")
+      }
+
+
     }
   }
   (initial_board, game_choice)
@@ -56,10 +59,12 @@ def main(): Unit = {
 //  game_engine(initial_board, eight_queens_drawer, eight_queens_controller)
 
   game match{
+    case 1 => game_engine(initial_board, Chess_drawer, Chess_controller)
     case 2 => game_engine(initial_board, tic_tac_toe_drawer, tic_tac_toe_controller)
     case 3 => game_engine(initial_board, checkers_drawer, checkers_controller)
-    case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
     case 4 => game_engine(initial_board, connect_4_drawer, connect_4_controller)
+    case 5 => game_engine(initial_board, Sudoku_drawer, Sudoku_controller)
+    case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
     case _ => println("NO")
   }
 //  tic_tac_toe_drawer(initial_board)

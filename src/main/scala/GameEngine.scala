@@ -7,8 +7,7 @@ def game_engine(initial_board: Array[Array[String]],
                 controller: ((Int, Array[Array[String]]), String) => (Boolean, Array[Array[String]])): Unit = {
   var board = initial_board;
   var turn = 1;
-  while (true) {
-    new JFrame();
+  while(true){
     drawer(board)
     println("""Please Enter a valid move for the game chosen""")
     try

@@ -2,14 +2,6 @@ import java.awt.{BasicStroke, BorderLayout, Color, Font, Graphics, Graphics2D, I
 import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 import java.awt.Window
 
-def eight_queens_valid(row: Int, col: Int): Boolean = {
-  if row >= 0 && row <= 7 && col >= 0 && col <= 7 then
-    true
-
-  else
-    false
-}
-
 def Eight_queens_drawer(board: Array[Array[String]]): Unit = {
   val win = java.awt.Window.getWindows
   for (i <- 0 until win.length) {
@@ -36,7 +28,7 @@ def Eight_queens_drawer(board: Array[Array[String]]): Unit = {
             g.setColor(color_1)
           else
             g.setColor(color_2)
-          g.fillRect(starting_point_of_board_x + i * 80, starting_point_of_board_y + j * 80, spacing_between_squares, spacing_between_squares)
+          g.fillRect(starting_point_of_board_x + i * spacing_between_squares, starting_point_of_board_y + j * spacing_between_squares, spacing_between_squares, spacing_between_squares)
         }
       }
 
@@ -67,7 +59,7 @@ def Eight_queens_drawer(board: Array[Array[String]]): Unit = {
 
       for (i <- 0 until board.length) {
         for (j <- 0 until board(0).length) {
-          g.drawImage(piece_to_image(board(i)(j)), starting_point_of_board_x + 5 + 80 * j, starting_point_of_board_y + 5 + 80 * i, 70, 70, null)
+          g.drawImage(piece_to_image(board(i)(j)), starting_point_of_board_x + 5 + spacing_between_squares * j, starting_point_of_board_y + 5 + spacing_between_squares * i, 70, 70, null)
         }
       }
 
@@ -80,75 +72,80 @@ def Eight_queens_drawer(board: Array[Array[String]]): Unit = {
   frame.setResizable(false)
   frame.setVisible(true)
 }
+
+
+
 def Eight_queens_controller(state: (Int, Array[Array[String]]), move: String): (Boolean, Array[Array[String]]) = {
-  var board = state._2
+  
+  def eight_queens_valid(row: Int, col: Int): Boolean = row >= 0 && row <= 7 && col >= 0 && col <= 7
+  
+  val board = state._2
   if (move.length != 3) then {
     (false, board)
   }
   else {
-    val ch = (move.charAt(0) - '1')
-    val ch2 = (move.charAt(1) - 'a')
-    val delete = move.charAt(2)
-    var count = 0
-    val fill = if delete == '+' then "q" else if delete == '-' then null else return (false, board)
+    val row = (move.charAt(0) - '1')
+    val col = (move.charAt(1) - 'a')
+    val added = move.charAt(2)
+    val fill = if added == '1' then "q" else if added == '0' then null else return (false, board)
 
-    if (!eight_queens_valid(ch, ch2)) then {
+    if (!eight_queens_valid(row, col)) then {
       (false, board)
     }
     else {
-      var i = ch + 1
-      var j = ch2 + 1
-      if (delete == '+' && (board(ch)(ch2) == "Q" || board(ch)(ch2) == "q")) then
+      var i = row + 1
+      var j = col + 1
+      if (added == '1' && (board(row)(col) == "Q" || board(row)(col) == "q")) then
         return (false, board)
 
-      if (delete == '-' && board(ch)(ch2) != "Q") then
+      if (added == '0' && board(row)(col) != "Q") then
         return (false, board)
-      board(ch)(ch2) = if delete == '+' then "Q" else null
+      board(row)(col) = if added == '1' then "Q" else null
 
       while (i < board.length && j < board(0).length) {
         board(i)(j) = fill
         i += 1
         j += 1
       }
-      i = ch - 1
-      j = ch2 - 1
+      i = row - 1
+      j = col - 1
       while (i >= 0 && j >= 0) {
         board(i)(j) = fill
         i -= 1
         j -= 1
       }
-      i = ch + 1
-      j = ch2 - 1
+      i = row + 1
+      j = col - 1
       while (i < board.length && j >= 0) {
         board(i)(j) = fill
         i += 1
         j -= 1
       }
-      i = ch - 1
-      j = ch2 + 1
+      i = row - 1
+      j = col + 1
       while (i >= 0 && j < board(0).length) {
         board(i)(j) = fill
         i -= 1
         j += 1
       }
-      i = ch - 1
+      i = row - 1
       while (i >= 0) {
-        board(i)(ch2) = fill
+        board(i)(col) = fill
         i -= 1
       }
-      i = ch + 1
+      i = row + 1
       while (i < board.length) {
-        board(i)(ch2) = fill
+        board(i)(col) = fill
         i += 1
       }
-      j = ch2 - 1
+      j = col - 1
       while (j >= 0) {
-        board(ch)(j) = fill
+        board(row)(j) = fill
         j -= 1
       }
-      j = ch2 + 1
+      j = col + 1
       while (j < board(0).length) {
-        board(ch)(j) = fill
+        board(row)(j) = fill
         j += 1
       }
       (true, board)
