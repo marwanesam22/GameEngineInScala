@@ -14,5 +14,9 @@ def piece_to_image(piece:String):Image = piece match {
   case "gray_circle" => new ImageIcon("src\\main\\scala\\pictures\\gray_circle.png").getImage()
   case "red_circle" => new ImageIcon("src\\main\\scala\\pictures\\red_circle.png").getImage()
   case "yellow_circle" => new ImageIcon("src\\main\\scala\\pictures\\yellow_circle.png").getImage()
+  case "red_basic" => new ImageIcon("src\\main\\scala\\pictures\\red_basic.png").getImage()
+  case "red_promoted" => new ImageIcon("src\\main\\scala\\pictures\\red_promoted.png").getImage()
+  case "black_basic" => new ImageIcon("src\\main\\scala\\pictures\\black_basic.png").getImage()
+  case "black_promoted" => new ImageIcon("src\\main\\scala\\pictures\\black_promoted.png").getImage()
   case  _  => new ImageIcon("").getImage
 }
