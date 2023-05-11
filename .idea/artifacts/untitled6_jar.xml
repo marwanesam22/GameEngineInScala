@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="untitled6:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/6GAMES_jar</output-path>
+    <root id="root">
+      <element id="archive" name="untitled6.jar">
+        <element id="module-output" name="untitled6-build" />
+        <element id="module-output" name="untitled6" />
+      </element>
+      <element id="library" level="project" name="sbt: org.scala-lang:scala3-library_3:3.2.2:jar" />
+      <element id="library" level="project" name="sbt: org.scala-lang:scala-library:2.13.10:jar" />
+    </root>
+  </artifact>
+</component>
