@@ -68,6 +68,7 @@ def Eight_queens_drawer(board: Array[Array[String]]): Unit = {
   }
   frame.setSize(800, 800)
   frame.add(panel)
+  frame.setLocationRelativeTo(null);
   frame.setAlwaysOnTop(true);
   frame.setResizable(false)
   frame.setVisible(true)

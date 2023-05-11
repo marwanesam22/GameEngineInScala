@@ -5,7 +5,7 @@ import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 import scala.util.control.Breaks.*
 
 object Main {
-  def take_input(): (Array[Array[String]], Int) = {
+  private def take_input(): (Array[Array[String]], Int) = {
     var initial_board: Array[Array[String]] = null
     var game_choice: Int = 0
 
@@ -49,7 +49,7 @@ object Main {
     (initial_board, game_choice)
   }
 
-  def main(args: Array[String]): Unit = {
+  def start_playing(): Unit = {
     val input = take_input();
     val initial_board = input._1
     val game = input._2
@@ -62,5 +62,8 @@ object Main {
       case 6 => game_engine(initial_board, Eight_queens_drawer, Eight_queens_controller)
       case _ => println("NO")
     }
+  }
+  def main(args: Array[String]): Unit = {
+    start_playing();
   }
 }

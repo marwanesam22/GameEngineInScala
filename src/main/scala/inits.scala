@@ -68,12 +68,6 @@ def init_sudoku(): Array[Array[String]] = {
       else ans(i)(j) = "-1"
     }
   }
-  for (i <- 0 until ans.length) {
-    for (j <- 0 until ans(0).length) {
-      print(ans(i)(j) + " ")
-    }
-    println()
-  }
   ans
 }
 

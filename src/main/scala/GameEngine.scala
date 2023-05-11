@@ -1,3 +1,5 @@
+import Main.start_playing
+
 import java.io.IOException
 import javax.swing.JFrame
 import scala.io.StdIn.*
@@ -12,6 +14,9 @@ def game_engine(initial_board: Array[Array[String]],
     println("""Please Enter a valid move for the game chosen""")
     try
       var move = readLine();
+      if(move == "Exit"){
+        start_playing();
+      }
       var ret = controller((turn, board), move)
       if (!ret._1) {
         println("Invalid move");
