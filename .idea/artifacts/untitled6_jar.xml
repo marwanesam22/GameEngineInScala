@@ -1,13 +1,14 @@
 <component name="ArtifactManager">
-  <artifact name="untitled6:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/6GAMES_jar</output-path>
-    <root id="root">
-      <element id="archive" name="untitled6.jar">
-        <element id="module-output" name="untitled6-build" />
-        <element id="module-output" name="untitled6" />
+  <artifact type="jar" name="untitled6:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/untitled6_jar</output-path>
+    <root id="archive" name="untitled6.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/scala/META-INF/MANIFEST.MF" />
       </element>
-      <element id="library" level="project" name="sbt: org.scala-lang:scala3-library_3:3.2.2:jar" />
-      <element id="library" level="project" name="sbt: org.scala-lang:scala-library:2.13.10:jar" />
+      <element id="module-output" name="untitled6-build" />
+      <element id="module-output" name="untitled6" />
+      <element id="extracted-dir" path="$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.2.2/scala3-library_3-3.2.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

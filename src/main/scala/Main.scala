@@ -1,8 +1,10 @@
 import java.awt.{Font, Graphics, Image}
-import java.io.IOException
+import java.io.{FileWriter, IOException}
 import scala.io.StdIn.*
 import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 import scala.util.control.Breaks.*
+import scala.io.Source
+
 
 object Main {
   private def take_input(): (Array[Array[String]], Int) = {
@@ -50,6 +52,10 @@ object Main {
   }
 
   def start_playing(): Unit = {
+    val win = java.awt.Window.getWindows
+    for (i <- 0 until win.length) {
+      win(i).dispose()
+    }
     val input = take_input();
     val initial_board = input._1
     val game = input._2

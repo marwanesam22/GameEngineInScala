@@ -1,14 +1,14 @@
 import java.awt.{BasicStroke, Color, Font, Graphics, Graphics2D}
+import java.io.FileWriter
 import javax.swing.{JFrame, JPanel, WindowConstants}
+import org.jpl7.*
+
+import scala.io.Source
 
 def sudoku_valid(i: Int, j: Int): Boolean = {
   i >= 0 && i < 9 && j >= 0 && j < 9
 }
 def Sudoku_drawer(board: Array[Array[String]]): Unit = {
-  val win = java.awt.Window.getWindows
-  for (i <- 0 until win.length) {
-    win(i).dispose()
-  }
   val frame = new JFrame("Game_engine")
   frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
   val numbers = Array("1", "2", "3", "4", "5", "6", "7", "8", "9")
@@ -79,15 +79,25 @@ def Sudoku_drawer(board: Array[Array[String]]): Unit = {
   frame.setAlwaysOnTop(true)
   frame.setVisible(true)
 }
-//noinspection ForwardReference
+
 def Sudoku_controller(state: (Int, Array[Array[String]]), move: String): (Boolean, Array[Array[String]]) = {
   var board = state._2
-  if (move.length != 4) then return (false, board)
+  if(move == "Solve"){
+    val ret = solve_using_prolog(board)
+    if(ret._1){
+      board = ret._2
+      return (true, board)
+    }else{
+      println("This Sudoku is not solvable")
+      return (false, board)
+    }
+  }
+  if (move.length != 3) then return (false, board)
   else {
     val row = (move.charAt(0) - '1')
     val col = (move.charAt(1) - 'a')
 
-    var number = if (move.charAt(3) == '0') then -1 else (move.charAt(3) - '0')
+    var number = if (move.charAt(2) == '0') then -1 else (move.charAt(2) - '0')
 
     if (number < (-1) || number > 9) {
       return (false, board)

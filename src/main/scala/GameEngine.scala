@@ -10,6 +10,10 @@ def game_engine(initial_board: Array[Array[String]],
   var board = initial_board;
   var turn = 1;
   while(true){
+    val win = java.awt.Window.getWindows
+    for (i <- 0 until win.length) {
+      win(i).dispose()
+    }
     drawer(board)
     println("""Please Enter a valid move for the game chosen""")
     try

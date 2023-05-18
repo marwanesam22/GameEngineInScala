@@ -5,10 +5,6 @@ import scala.math.*
 
 
 def checkers_drawer(board: Array[Array[String]]): Unit = {
-  val win = java.awt.Window.getWindows
-  for (i <- 0 until win.length) {
-    win(i).dispose()
-  }
   val frame = new JFrame("Game_engine")
   frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
   val numbers = Array("1", "2", "3", "4", "5", "6", "7", "8")
