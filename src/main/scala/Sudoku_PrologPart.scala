@@ -50,8 +50,8 @@ def convert_to_board(rows: Term): Array[Array[String]] = {
   }
   new_board
 }
-def solve_using_prolog(board: Array[Array[String]]): (Boolean, Array[Array[String]]) = {
-  val consultQuery = new Query("consult('E:/Semester 4/Paradigms/GameEngineInScala/src/main/scala/Sudoku_Solver.pl')")
+def solve_sudoku_using_prolog(board: Array[Array[String]]): (Boolean, Array[Array[String]]) = {
+  val consultQuery = new Query("consult('C:/Users/madyelzainy/OneDrive/Documents/New folder (2)/GameEngineInScala/src/main/scala/Sudoku_Solver.pl')")
   consultQuery.hasSolution
 
   val array_to_be_solved: String = construct_prolog_array(board)

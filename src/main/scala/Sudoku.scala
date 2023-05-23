@@ -83,7 +83,7 @@ def Sudoku_drawer(board: Array[Array[String]]): Unit = {
 def Sudoku_controller(state: (Int, Array[Array[String]]), move: String): (Boolean, Array[Array[String]]) = {
   var board = state._2
   if(move == "Solve"){
-    val ret = solve_using_prolog(board)
+    val ret = solve_sudoku_using_prolog(board)
     if(ret._1){
       board = ret._2
       return (true, board)
