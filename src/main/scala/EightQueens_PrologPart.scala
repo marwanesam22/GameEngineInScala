@@ -7,9 +7,7 @@ var array_converted_to_string = "["
     for(j <-0 until(board(0).length)){
       if(board(j)(i) == "Q"){
         added = true
-        array_converted_to_string+=j
-        System.out.println(i)
-        System.out.println(j)
+        array_converted_to_string+=(j+1)
       }
     }
     if(added == false) {
@@ -19,7 +17,6 @@ var array_converted_to_string = "["
   }
   array_converted_to_string += "]"
   array_converted_to_string
-
 }
 
 def extractNumbers(term: Term): List[Int] = term match {
@@ -39,26 +36,25 @@ def convertToBoard(rows: Term): Array[Array[String]] = {
   val list_of_numbers_in_term = extractNumbers(rows)
   var index: Int = 0
   val new_board = Array.ofDim[String](8, 8)
-  for (i <- 0 until 8) {
-    for (j <- 0 until 8) {
-      new_board(i)(j) = list_of_numbers_in_term(index).toString
-      index+=1
-    }
+
+  for (j <- 0 until 8) {
+    new_board(list_of_numbers_in_term(index)-1)(j) = "Q"
+    index+=1
   }
+
   new_board
 }
 
 def solveEightQueensUsingProlog(board: Array[Array[String]]): (Boolean, Array[Array[String]]) = {
- val consultQuery =new Query("consult('C:/Users/madyelzainy/OneDrive/Documents/New folder (2)/GameEngineInScala/src/main/scala/8queens_solver.pl')")
+ val consultQuery =new Query("consult('C:/Users/madyelzainy/OneDrive/Documents/New folder (2)/GameEngineInScala/src/main/scala/EightQueens_solver.pl')")
  consultQuery.hasSolution
 
   val array_to_be_solved: String = constructPrologList(board)
-  System.out.println(array_to_be_solved)
-  val prolog_query = "Qs = " + array_to_be_solved + " ,eight_queens(Qs), maplist(between(1,8), Qs)."
+  val prolog_query = "N = 8, Qs = "+ array_to_be_solved +", n_queens(N, Qs), labeling([ff], Qs)."
   val query = new Query(prolog_query)
   if (query.hasSolution) {
     val solution = query.oneSolution()
-    val rows_array = solution.get("Rows")
+    val rows_array = solution.get("Qs")
     val solved_board = convertToBoard(rows_array)
     (true, solved_board)
   } else {
